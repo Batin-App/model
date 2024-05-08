@@ -1,3 +1,4 @@
+import os
 from collections import OrderedDict
 
 import torch
@@ -35,7 +36,9 @@ def load_model():
     model = AutoModel.from_pretrained("bert-base-uncased")
 
     model = EmotionClassifierWithConv(model, 6)
-    model_state_dict = torch.load("./model/fine_tuned_batin.pth", map_location=device)
+
+    model_path = os.path.join(os.getcwd(), "model", "fine_tuned_batin.pth")
+    model_state_dict = torch.load(model_path, map_location=device)
 
     if next(iter(model_state_dict.keys())).startswith("module."):
         new_state_dict = OrderedDict()
