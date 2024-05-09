@@ -6,6 +6,7 @@ colorama==0.4.6
 filelock==3.14.0
 Flask==3.0.3
 fsspec==2024.3.1
+gunicorn==22.0.0
 huggingface-hub==0.23.0
 idna==3.7
 importlib_metadata==7.1.0
