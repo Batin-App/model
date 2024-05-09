@@ -1,6 +1,7 @@
 import os
 from collections import OrderedDict
 
+import boto3
 import torch
 from flask import Flask, request, jsonify
 from torch import nn
@@ -37,8 +38,7 @@ def load_model():
 
     model = EmotionClassifierWithConv(model, 6)
 
-    model_path = os.path.join(os.getcwd(), "model", "fine_tuned_batin.pth")
-    model_state_dict = torch.load(model_path, map_location=device)
+    model_state_dict = torch.hub.load_state_dict_from_url("https://assets.djaeger.dev/fine_tuned_batin.pth", map_location=device)
 
     if next(iter(model_state_dict.keys())).startswith("module."):
         new_state_dict = OrderedDict()
