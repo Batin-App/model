@@ -1,7 +1,5 @@
-import os
 from collections import OrderedDict
 
-import boto3
 import torch
 from flask import Flask, request, jsonify
 from torch import nn
